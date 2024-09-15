@@ -1,0 +1,61 @@
+import { useNavigate } from "react-router-dom";
+import { Button, Card, Image, Typography } from "antd";
+import { useState } from "react";
+
+const { Title, Paragraph } = Typography;
+
+const Shop = () => {
+  const navigate = useNavigate();
+
+  const exampleData = {
+    address: "0QBDbjm96ekD4iI-HGqIeVd-fXyqmZCR2WUbV0NWIVphrDam",
+    amount: 0.1,
+    message: JSON.stringify(
+      {
+        serialId: "789012",
+        productName: "Wfast WF-2000X",
+        productDescription: "This is another sample product description.",
+        price: "20 TON",
+      },
+      null,
+      2
+    ), // Prettify JSON
+  };
+
+  const handleGenerateQR = () => {
+    // Navigate to the generate page with example data in query parameters
+    navigate(
+      `/generate?address=${encodeURIComponent(
+        exampleData.address
+      )}&amount=${encodeURIComponent(
+        exampleData.amount
+      )}&message=${encodeURIComponent(exampleData.message)}`
+    );
+  };
+
+  return (
+    <div className="flex flex-col items-center p-5">
+      <Title level={2}>Shop</Title>
+      <Card title="Product Details" style={{ width: 300 }}>
+        <Image src="data:image/jpeg;base64,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" />
+        <Paragraph>
+            <strong>Serial ID:</strong> 123456
+        </Paragraph>
+        <Paragraph>
+          <strong>Product Name:</strong> Wfast WF-2000X
+        </Paragraph>
+        <Paragraph>
+          <strong>Description:</strong> This is a sample product description.
+        </Paragraph>
+        <Paragraph>
+          <strong>Price:</strong> 1299 TON
+        </Paragraph>
+        <Button type="primary" onClick={handleGenerateQR}>
+          Make QR
+        </Button>
+      </Card>
+    </div>
+  );
+};
+
+export default Shop;

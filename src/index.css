@@ -1,3 +1,37 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --gray-20: #f5f5f5bd;
+  --gray-80: #515151;
+  --gray-100: #262626;
+  --gray-base: #151618;
+  --gray-tint-10: #2c2d2f;
+  --gray-tint-20: #444546;
+  --gray-tint-40: #737374;
+  --gray-tint-10: #2c2d2f;
+  --gray-tint-10: #2c2d2f;
+  --gray-tint-60: #8c8d8f;
+
+  --secondary: #daa25a;
+  --blue-accent: #58bef9;
+
+  --accent: #d11f3e;
+  --accent-base: #2fa2bd;
+  --accent-tint-90: #eaf6f8;
+
+  --contextual-success-base: #1fa47c;
+
+  --color-text: #151618;
+  --color-accent: #e76a10;
+  --color-bg: white;
+
+  --loader-text-color: #f6e9fe;
+  --loader-dot-color: #a51ff6;
+  --loader-bg: #100319;
+}
+
+:where(.css-dev-only-do-not-override-qnu6hi).ant-drawer-left>.ant-drawer-content-wrapper {
+    box-shadow: none !important;
+}
