@@ -13,7 +13,7 @@ const routes = createBrowserRouter([
     path: "/",
     element: (
       <Suspense fallback={<div>Lazy loading...</div>}>
-        <TonConnectUIProvider manifestUrl="https://telegram-web3-qrcode.vercel.app/tonconnect-manifest.json">
+        <TonConnectUIProvider manifestUrl="https://raw.githubusercontent.com/nghia45/telegram-web3-qrcode/master/tonconnect-manifest.json">
           {/* <TonConnectUIProvider manifestUrl="https://localhost:5173/tonconnect-manifest.json"> */}
           <Outlet />
         </TonConnectUIProvider>
