@@ -1,7 +1,6 @@
 import { Telegraf } from "telegraf";
 import { message } from "telegraf/filters";
 
-const BOT_TOKEN = `6976872805:AAFdN0JZ5Ib0ZcsDG4UvEa39yhjUo40gZrA`;
 
 const bot = new Telegraf(BOT_TOKEN);
 const web_link = `https://telegram-web3-qrcode.vercel.app/`;
