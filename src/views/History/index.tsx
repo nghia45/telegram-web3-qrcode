@@ -63,7 +63,7 @@ const TonTransactionHistory = () => {
       title: "Transaction ID",
       dataIndex: ["transaction_id", "hash"],
       key: "transactionId",
-      responsive: ["md"], // Hide on mobile
+      // responsive: ["md"], // Hide on mobile
     },
     {
       title: "Amount (TON)",
@@ -81,7 +81,7 @@ const TonTransactionHistory = () => {
       title: "Destination",
       dataIndex: ["in_msg", "destination"],
       key: "destination",
-      responsive: ["md"], // Hide on mobile
+      // responsive: ["md"], // Hide on mobile
     },
     {
       title: "Fee (TON)",
