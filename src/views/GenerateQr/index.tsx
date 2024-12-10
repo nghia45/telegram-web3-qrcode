@@ -113,7 +113,7 @@ const GenerateQr = () => {
           {
             type: "default",
             text: "Download",
-            onClick: () => {
+            onclick: () => {
               // Create a file download using Telegram's file API
               const link = document.createElement("a");
               link.href = URL.createObjectURL(file);
