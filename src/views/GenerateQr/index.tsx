@@ -1,4 +1,11 @@
 import { useState, useRef, useEffect } from "react";
+
+// Extend the Window interface to include the Telegram property
+declare global {
+  interface Window {
+    Telegram: any;
+  }
+}
 import QRCode from "react-qr-code";
 import { Input, Button, message as antdMessage } from "antd";
 import CryptoJS from "crypto-js";
@@ -83,16 +90,40 @@ const GenerateQr = () => {
       antdMessage.error("QR code not found");
       return;
     }
-
+  
     try {
       const canvas = await html2canvas(qrRef.current); // Convert the QR code container to canvas
-      const image = canvas.toDataURL("image/png");
-
-      // Create a temporary link to download the image
-      const link = document.createElement("a");
-      link.href = image;
-      link.download = "qr-code.png";
-      link.click();
+      const imageBlob = await new Promise<Blob | null>((resolve) =>
+        canvas.toBlob((blob) => resolve(blob), "image/png")
+      );
+  
+      if (!imageBlob) {
+        antdMessage.error("Failed to create image blob");
+        return;
+      }
+  
+      // Use Telegram WebApp file upload
+      const file = new File([imageBlob!], "qr-code.png", { type: "image/png" });
+  
+      window.Telegram.WebApp.showPopup({
+        title: "Download QR Code",
+        message: "Would you like to download the QR code?",
+        buttons: [
+          { type: "cancel", text: "Cancel" },
+          {
+            type: "default",
+            text: "Download",
+            onClick: () => {
+              // Create a file download using Telegram's file API
+              const link = document.createElement("a");
+              link.href = URL.createObjectURL(file);
+              link.download = file.name;
+              link.click();
+              antdMessage.success("QR code downloaded successfully");
+            },
+          },
+        ],
+      });
     } catch (error) {
       antdMessage.error("Failed to export QR code");
     }
